@@ -6,7 +6,7 @@ public class BallScript : MonoBehaviour
 {
     private Rigidbody2D _rb;
     [SerializeField]
-    private float _ballSpeed = 10.0f;
+    public float ballSpeed = 8.0f;
     private float prevY = 0.0f;
     private float curY = 0.0f;
     private float sameYDurration = 0.0f;
@@ -14,14 +14,10 @@ public class BallScript : MonoBehaviour
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();    
     }
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
-        _rb.velocity = _rb.velocity.normalized * _ballSpeed;
+        _rb.velocity = _rb.velocity.normalized * ballSpeed;
         
         curY = transform.position.y;
         if(prevY == curY){
@@ -32,10 +28,8 @@ public class BallScript : MonoBehaviour
             prevY = curY;
         }
         if(sameYDurration > 5.0f){
-            print("same height for long");
             _rb.AddForce(new Vector3(0f, -6.0f, 0.0f));
             sameYDurration = 0;
         }
-        
     }
 }

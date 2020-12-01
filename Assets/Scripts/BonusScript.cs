@@ -15,7 +15,7 @@ public class BonusScript : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "ball")
         {
-            ballLauncher.counter = ballLauncher.counter + 2;
+            ballLauncher.counter = ballLauncher.counter + 1;
             Destroy(gameObject);
         }
     }

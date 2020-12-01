@@ -15,6 +15,7 @@ public class BallLauncher : MonoBehaviour
     public int counter = 1;
     public bool canPull = true;
     private bool canShowPreview = false;
+    public float increasedSpeed = 18.0f;
 
     private void Awake() {
         launcherPreview = GetComponent<LauncherPreview>();
@@ -77,6 +78,17 @@ public class BallLauncher : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
 
             localCounter--;
+        }
+    }
+
+    public void MakeBallsFaster(){
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
+
+        print("balls " + balls.Length );
+
+        foreach (var ball in balls)
+        {
+            ball.GetComponent<BallScript>().ballSpeed = increasedSpeed;
         }
     }
 

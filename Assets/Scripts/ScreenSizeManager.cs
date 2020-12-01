@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenSizeManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
     private GameObject leftWall, rightWall, topWall, bottomWall, blockSpawner;
+    [SerializeField]
+    private Button button;
     private float horizontalDistance;
     private float verticalDistance;
     private float width;
@@ -55,5 +58,7 @@ public class ScreenSizeManager : MonoBehaviour
         rightWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10.0f));
         topWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 10.0f));
         bottomWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.2f, 10.0f));
+        button.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.9f, 0.16f, 10.0f));
+
     }
 }
