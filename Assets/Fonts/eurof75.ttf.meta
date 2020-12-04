@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c4e844552729634d94fcc819e798ac2
+guid: 98cfdb6ada4e11622ad00cb863cda64d
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Caviar Dreams
+  fontName: eurofurence
   fontNames:
-  - Caviar Dreams
+  - eurofurence
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

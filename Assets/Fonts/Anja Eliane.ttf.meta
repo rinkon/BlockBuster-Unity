@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 36e7cd87c2e6091e4943846ce04e60ae
+guid: c39ad0f092092c9de8d436d29194ba8a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,11 +8,10 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Caviar Dreams
+  fontName: Anja Eliane
   fontNames:
-  - Caviar Dreams
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 8c4e844552729634d94fcc819e798ac2, type: 3}
+  - Anja Eliane
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

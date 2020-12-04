@@ -10,7 +10,7 @@ public class ScreenSizeManager : MonoBehaviour
     [SerializeField]
     private GameObject leftWall, rightWall, topWall, bottomWall, blockSpawner;
     [SerializeField]
-    private Button button;
+    private Button speedUpButton, winBallsButton;
     private float horizontalDistance;
     private float verticalDistance;
     private float width;
@@ -58,7 +58,8 @@ public class ScreenSizeManager : MonoBehaviour
         rightWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10.0f));
         topWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 10.0f));
         bottomWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.2f, 10.0f));
-        button.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.9f, 0.16f, 10.0f));
+        winBallsButton.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.16f, 10.0f));
+        speedUpButton.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.12f, 10.0f));
 
     }
 }
