@@ -66,18 +66,20 @@ public class BallLauncher : MonoBehaviour
 
 
     IEnumerator BallzRain(Vector3 direction){
-        canPull = false;
-        canShowPreview = false;
-        int localCounter = counter;
-        GetComponentInParent<BottomWallScript>().targetBallCount = localCounter;
-        while(localCounter > 0){
-            GameObject theBall = Instantiate(ball, transform.position, Quaternion.identity);
+        if(direction.magnitude > 0.0f){
+            canPull = false;
+            canShowPreview = false;
+            int localCounter = counter;
+            GetComponentInParent<BottomWallScript>().targetBallCount = localCounter;
+            while(localCounter > 0){
+                GameObject theBall = Instantiate(ball, transform.position, Quaternion.identity);
 
-            theBall.GetComponent<Rigidbody2D>().AddForce(direction.normalized);
+                theBall.GetComponent<Rigidbody2D>().AddForce(direction.normalized);
 
-            yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(0.03f);
 
-            localCounter--;
+                localCounter--;
+            }
         }
     }
 

@@ -25,7 +25,6 @@ public class BlockSpawner : MonoBehaviour
 
     private void OnEnable() 
     {
-        print("OnEnable width: " + width);   
         SpawnRow();
         score.SetText("SCORE: " + (rowCount - 1).ToString());
     }

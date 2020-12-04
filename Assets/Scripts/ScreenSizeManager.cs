@@ -49,8 +49,6 @@ public class ScreenSizeManager : MonoBehaviour
         width = (horizontalDistance - 0.6f * 7.0f) / 8.0f;
         width += 0.6f;
         blockSpawner.GetComponent<BlockSpawner>().width = width;
-
-        print("Width: " + width);
     }
 
     private void PositionWalls(){
