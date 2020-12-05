@@ -9,6 +9,8 @@ public class BlockScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private TextMeshPro text;
     private int hitsRemaining = 5;
+    [SerializeField]
+    private ParticleSystem boxplosion;
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -22,8 +24,12 @@ public class BlockScript : MonoBehaviour
         {
             if (hitsRemaining > 1) 
                 hitsRemaining -= 1;
-            else
+            else {
+                ParticleSystem localBoxPlosion = Instantiate(boxplosion, gameObject.transform.position, Quaternion.identity);
+                localBoxPlosion.Play();
+                Destroy(localBoxPlosion, 0.20f);
                 Destroy(gameObject);
+            }
             UpdateVisualState();   
         }
     }

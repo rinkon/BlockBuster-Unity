@@ -76,7 +76,7 @@ public class BallLauncher : MonoBehaviour
 
                 theBall.GetComponent<Rigidbody2D>().AddForce(direction.normalized);
 
-                yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(0.06f);
 
                 localCounter--;
             }
