@@ -12,8 +12,14 @@ public class BlockScript : MonoBehaviour
     [SerializeField]
     private ParticleSystem boxplosion;
 
-    private void Awake() {
+    string[] colors = {"#009da7", "#00ff86","#ff6e49", "#de0062", "#ff2420", "#00c89b", "#083a59", "#9f003f", "#cb3522"};
+
+    private void Awake()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Color boxColor;
+        ColorUtility.TryParseHtmlString(colors[UnityEngine.Random.Range(0, 9)], out boxColor);
+        spriteRenderer.color = boxColor;
         text = GetComponentInChildren<TextMeshPro>();
         UpdateVisualState();
     }
@@ -22,22 +28,24 @@ public class BlockScript : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "ball")
         {
-            if (hitsRemaining > 1) 
+            if (hitsRemaining > 1)
                 hitsRemaining -= 1;
-            else {
+            else
+            {
                 ParticleSystem localBoxPlosion = Instantiate(boxplosion, gameObject.transform.position, Quaternion.identity);
+                ParticleSystem.MainModule mp = localBoxPlosion.main;
+                mp.startColor = spriteRenderer.color;
                 localBoxPlosion.Play();
                 Destroy(localBoxPlosion, 0.20f);
                 Destroy(gameObject);
             }
-            UpdateVisualState();   
+            UpdateVisualState();
         }
     }
 
     private void UpdateVisualState()
     {
         text.SetText(hitsRemaining.ToString());
-        spriteRenderer.color = Color.Lerp(Color.white, Color.yellow, hitsRemaining / 10.0f);
     }
 
     public void SetHits(int hits)
