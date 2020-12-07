@@ -793,7 +793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &478905710
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1560,6 +1560,8 @@ MonoBehaviour:
   bonusPrefab: {fileID: 9085778181976874029, guid: 92b2a632bf1f6cf0c9ff0251f1b97904,
     type: 3}
   rootBall: {fileID: 1381944460}
+  gameEndPopup: {fileID: 1306745347}
+  blurImage: {fileID: 18024563}
   width: 0
   score: {fileID: 273577425}
 --- !u!4 &728147085

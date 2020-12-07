@@ -10,7 +10,7 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField]
     private BlockScript blockPrefab;
     [SerializeField]
-    private GameObject bonusPrefab, rootBall;
+    private GameObject bonusPrefab, rootBall, gameEndPopup, blurImage;
     private int rowCount = 0;
 
     private List<BlockScript> blockSpawned = new List<BlockScript>();
@@ -39,7 +39,14 @@ public class BlockSpawner : MonoBehaviour
                 if(block.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = block.transform.position.y;
                     if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
-                        SceneManager.LoadScene("MainScene");
+                        // SceneManager.LoadScene("MainScene");
+                        gameEndPopup.SetActive(true);
+                        blurImage.SetActive(true);
+
+                        for (int timeD = 0; timeD < 100; timeD++)
+                        {
+                            
+                        }
                     }
                 }
             }
@@ -52,7 +59,9 @@ public class BlockSpawner : MonoBehaviour
                 if(bonus.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = bonus.transform.position.y;
                     if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
-                        SceneManager.LoadScene("MainScene");
+                        // SceneManager.LoadScene("MainScene");
+                        gameEndPopup.SetActive(true);
+                        blurImage.SetActive(true);
                     }
                 }
             }
