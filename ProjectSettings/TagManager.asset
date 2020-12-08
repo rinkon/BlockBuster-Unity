@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ball
   - inverseBlock
+  - blockSpawner
   layers:
   - Default
   - TransparentFX

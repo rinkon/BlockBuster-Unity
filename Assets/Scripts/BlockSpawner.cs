@@ -24,8 +24,9 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField]
 
     private TextMeshPro score;
-    [SerializeField]
-    private CanvasGroup canvasGroup;
+    
+    public bool shouldGoUp = false;
+    public int goReverseCount = 0;
 
     private void OnEnable() 
     {
@@ -35,11 +36,19 @@ public class BlockSpawner : MonoBehaviour
 
     private void SpawnRow()
     {
+        if(shouldGoUp){
+            goReverseCount = 2;
+            // shouldGoUp = false;
+        }
         foreach (var block in blockSpawned)
         {
             if (block != null)
             {
-                block.transform.position += Vector3.down * width;
+                if(!shouldGoUp)
+                    block.transform.position += Vector3.down * width;
+                else {
+                    block.transform.position += Vector3.up * width;
+                }
                 if(block.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = block.transform.position.y;
                     if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
@@ -56,7 +65,11 @@ public class BlockSpawner : MonoBehaviour
         {
             if (bonus != null)
             {
-                bonus.transform.position += Vector3.down * width;
+                if(!shouldGoUp)
+                    bonus.transform.position += Vector3.down * width;
+                else {
+                    bonus.transform.position += Vector3.up * width;
+                }
                 if(bonus.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = bonus.transform.position.y;
                     if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
@@ -70,30 +83,37 @@ public class BlockSpawner : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 7; i++)
-        {
-            int rndm = UnityEngine.Random.Range(0, 100);
-            if (rndm <= 30)
+        if(goReverseCount == 0){
+            rowCount++;
+            for (int i = 0; i < 7; i++)
             {
-                var block = Instantiate(blockPrefab, GetPosition(i), Quaternion.identity);   
-                int hits = UnityEngine.Random.Range(1, 3) + rowCount;
-                block.SetHits(hits);
-                blockSpawned.Add(block);
-            }
-            else if(rndm > 30 && rndm < 35 )
-            {
-                var bonus = Instantiate(bonusPrefab, GetPosition(i), Quaternion.identity);
-                bonusSpawned.Add(bonus);
-            }
-            else if(rndm > 40 && rndm < 50 )
-            {
-                var block = Instantiate(inverseBlock, GetPosition(i), Quaternion.identity);
-                int hits = UnityEngine.Random.Range(1, 3) + rowCount;
-                block.SetHits(hits);
-                blockSpawned.Add(block);
+                int rndm = UnityEngine.Random.Range(0, 100);
+                if (rndm <= 30)
+                {
+                    var block = Instantiate(blockPrefab, GetPosition(i), Quaternion.identity);   
+                    int hits = UnityEngine.Random.Range(1, 3) + rowCount;
+                    block.SetHits(hits);
+                    blockSpawned.Add(block);
+                }
+                else if(rndm > 30 && rndm < 35 )
+                {
+                    var bonus = Instantiate(bonusPrefab, GetPosition(i), Quaternion.identity);
+                    bonusSpawned.Add(bonus);
+                }
+                else if(rndm > 40 && rndm < 50 && rowCount > 2)
+                {
+                    var block = Instantiate(inverseBlock, GetPosition(i), Quaternion.identity);
+                    int hits = UnityEngine.Random.Range(1, 3) + rowCount;
+                    block.SetHits(hits);
+                    blockSpawned.Add(block);
+                }
             }
         }
-        rowCount++;
+        if(goReverseCount > 0){
+            goReverseCount--;
+        }
+        if (shouldGoUp) shouldGoUp = false;
+        
     }
 
     private Vector3 GetPosition(int i)
