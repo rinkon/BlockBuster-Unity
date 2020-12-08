@@ -8,9 +8,11 @@ using TMPro;
 public class BlockSpawner : MonoBehaviour
 {
     [SerializeField]
-    private BlockScript blockPrefab;
+    private BlockScript blockPrefab, inverseBlock;
     [SerializeField]
     private GameObject bonusPrefab, rootBall, gameEndPopup, blurImage;
+    [SerializeField]
+    private BallLauncher ballLauncher;
     private int rowCount = 0;
 
     private List<BlockScript> blockSpawned = new List<BlockScript>();
@@ -22,6 +24,8 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField]
 
     private TextMeshPro score;
+    [SerializeField]
+    private CanvasGroup canvasGroup;
 
     private void OnEnable() 
     {
@@ -42,11 +46,8 @@ public class BlockSpawner : MonoBehaviour
                         // SceneManager.LoadScene("MainScene");
                         gameEndPopup.SetActive(true);
                         blurImage.SetActive(true);
-
-                        for (int timeD = 0; timeD < 100; timeD++)
-                        {
-                            
-                        }
+                        ballLauncher.canPull = false;
+                        // StartCoroutine(FadeIn(canvasGroup));
                     }
                 }
             }
@@ -62,6 +63,8 @@ public class BlockSpawner : MonoBehaviour
                         // SceneManager.LoadScene("MainScene");
                         gameEndPopup.SetActive(true);
                         blurImage.SetActive(true);
+                        ballLauncher.canPull = false;
+                        // StartCoroutine(FadeIn(canvasGroup));
                     }
                 }
             }
@@ -82,6 +85,13 @@ public class BlockSpawner : MonoBehaviour
                 var bonus = Instantiate(bonusPrefab, GetPosition(i), Quaternion.identity);
                 bonusSpawned.Add(bonus);
             }
+            else if(rndm > 40 && rndm < 50 )
+            {
+                var block = Instantiate(inverseBlock, GetPosition(i), Quaternion.identity);
+                int hits = UnityEngine.Random.Range(1, 3) + rowCount;
+                block.SetHits(hits);
+                blockSpawned.Add(block);
+            }
         }
         rowCount++;
     }
@@ -89,5 +99,27 @@ public class BlockSpawner : MonoBehaviour
     private Vector3 GetPosition(int i)
     {
         return transform.position + Vector3.right * i * width;
+    }
+
+    public IEnumerator FadeIn(CanvasGroup canvasGroup){
+        float lerptime = 0.5f;
+        float _timeStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - _timeStartedLerping;
+        float percentageCompleted = timeSinceStarted/lerptime;
+
+        while(true){
+            timeSinceStarted = Time.time - _timeStartedLerping;
+            percentageCompleted = timeSinceStarted/lerptime;
+
+            float currentValue = Mathf.Lerp(0, 1, percentageCompleted);
+
+            canvasGroup.alpha = currentValue;
+
+            if (percentageCompleted >= 1) break;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        print("done");
     }
 }

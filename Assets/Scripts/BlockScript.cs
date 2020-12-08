@@ -18,8 +18,10 @@ public class BlockScript : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         Color boxColor;
-        ColorUtility.TryParseHtmlString(colors[UnityEngine.Random.Range(0, 9)], out boxColor);
-        spriteRenderer.color = boxColor;
+        if(gameObject.tag != "inverseBlock"){
+            ColorUtility.TryParseHtmlString(colors[UnityEngine.Random.Range(0, 9)], out boxColor);
+            spriteRenderer.color = boxColor;
+        }
         text = GetComponentInChildren<TextMeshPro>();
         UpdateVisualState();
     }
