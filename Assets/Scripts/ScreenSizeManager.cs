@@ -14,6 +14,7 @@ public class ScreenSizeManager : MonoBehaviour
     private float horizontalDistance;
     private float verticalDistance;
     private float width;
+    private bool isBottomWallSet = false;
 
     void Awake()
     {
@@ -32,6 +33,15 @@ public class ScreenSizeManager : MonoBehaviour
         // print("Horizontal distance: " + horizontalDistance);
 
         
+    }
+    private void Update() {
+        if(!isBottomWallSet){
+            float tempX = bottomWall.transform.position.x;
+            bottomWall.transform.position = Camera.main.ScreenToWorldPoint( new Vector3(bottomWall.transform.position.x, Camera.main.WorldToScreenPoint(winBallsButton.transform.position).y + 100.0f, 0.0f));
+            bottomWall.transform.position = new Vector3(tempX, bottomWall.transform.position.y, 0);
+            isBottomWallSet = true;
+        }
+        // print("BottomWall Position update " + Camera.main.WorldToScreenPoint(bottomWall.transform.position));
     }
 
     private void PositionBlockSpawner()
@@ -56,8 +66,13 @@ public class ScreenSizeManager : MonoBehaviour
         rightWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10.0f));
         topWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 10.0f));
         bottomWall.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.2f, 10.0f));
-        winBallsButton.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.16f, 10.0f));
-        speedUpButton.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.12f, 10.0f));
+
+        // print("Button Position " + Camera.main.WorldToScreenPoint(winBallsButton.transform.position));
+        // print("BottomWall Position " + Camera.main.WorldToScreenPoint(bottomWall.transform.position));
+        
+        // bottomWall.transform.position = new Vector2(bottomWall.transform.position.x, winBallsButton.transform.position.y);
+        // winBallsButton.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.16f, 10.0f));
+        // speedUpButton.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.10f, 10.0f));
 
     }
 }
