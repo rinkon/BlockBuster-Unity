@@ -28,7 +28,7 @@ public class BallScript : MonoBehaviour
             prevY = curY;
         }
         if(sameYDurration > 3.0f){
-            _rb.AddForce(new Vector3(0f, -10.0f, 0.0f));
+            _rb.AddForce(new Vector3(0f, -20.0f, 0.0f));
             sameYDurration = 0;
         }
     }

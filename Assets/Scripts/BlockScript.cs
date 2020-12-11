@@ -39,8 +39,8 @@ public class BlockScript : MonoBehaviour
                 mp.startColor = spriteRenderer.color;
                 localBoxPlosion.Play();
                 Destroy(localBoxPlosion, 0.20f);
-                if(gameObject.tag == "inverseBlock"){
-                    GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().shouldGoUp = true;
+                if(gameObject.tag == "inverseBlock" && GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().goReverseCount == 0){
+                    GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().InverseBlockPower();
                     // GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().goReverseCount = 2;
                 }
                 Destroy(gameObject);
