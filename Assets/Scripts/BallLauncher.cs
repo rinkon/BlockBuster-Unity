@@ -55,7 +55,7 @@ public class BallLauncher : MonoBehaviour
     private void KeepDragging(Vector3 worldPosition)
     {
         Vector3 direction = worldPosition - startPosition;
-        launcherPreview.SetEndPoint(transform.position - direction);
+        launcherPreview.SetEndPoint(transform.position - direction * 3);
     }
 
     private void StartDrag(Vector3 worldPosition)

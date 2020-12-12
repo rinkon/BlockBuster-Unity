@@ -84,11 +84,9 @@ public class BlockSpawner : MonoBehaviour
                 if(bonus.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = bonus.transform.position.y;
                     if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
-                        // SceneManager.LoadScene("MainScene");
                         gameEndPopup.SetActive(true);
                         blurImage.SetActive(true);
                         ballLauncher.canPull = false;
-                        // StartCoroutine(FadeIn(canvasGroup));
                     }
                 }
             }
@@ -106,7 +104,7 @@ public class BlockSpawner : MonoBehaviour
                     block.SetHits(hits);
                     blockSpawned.Add(block);
                 }
-                else if(rndm > 30 && rndm < 33 )
+                else if( rndm > 30 && rndm < 36 )
                 {
                     var bonus = Instantiate(bonusPrefab, GetPosition(i), Quaternion.identity);
                     bonusSpawned.Add(bonus);

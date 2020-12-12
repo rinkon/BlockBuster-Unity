@@ -14,6 +14,7 @@ public class LauncherPreview : MonoBehaviour
     public void SetStartPoint(Vector3 worldPosition){
         startPosition = worldPosition;
         lineRenderer.SetPosition(0, worldPosition);
+        lineRenderer.SetPosition(1, worldPosition);
     }
 
     public void SetEndPoint(Vector3 worldPosition){
