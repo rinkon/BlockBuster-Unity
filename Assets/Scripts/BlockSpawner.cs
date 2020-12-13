@@ -36,17 +36,18 @@ public class BlockSpawner : MonoBehaviour
     {
         SpawnRow();
         score.SetText((rowCount - 1).ToString());
+        print("Spawned blocks: " + blockSpawned.Count);
     }
 
     private void SpawnRow()
     {
         if(shouldGoUp){
             goReverseCount = 2;
-            // shouldGoUp = false;
         }
         if(shouldGoUpTwoRows){
             goReverseCount = 3;
         }
+        // move blocks down or up
         foreach (var block in blockSpawned)
         {
             if (block != null)
@@ -61,15 +62,14 @@ public class BlockSpawner : MonoBehaviour
                 if(block.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = block.transform.position.y;
                     if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
-                        // SceneManager.LoadScene("MainScene");
                         gameEndPopup.SetActive(true);
                         blurImage.SetActive(true);
                         ballLauncher.canPull = false;
-                        // StartCoroutine(FadeIn(canvasGroup));
                     }
                 }
             }
         }
+        // move bonuses down or up
         foreach (var bonus in bonusSpawned)
         {
             if (bonus != null)
@@ -92,6 +92,7 @@ public class BlockSpawner : MonoBehaviour
             }
         }
 
+        // Generate rows of blocks and bonus
         if(goReverseCount == 0){
             rowCount++;
             for (int i = 0; i < 7; i++)
@@ -123,6 +124,7 @@ public class BlockSpawner : MonoBehaviour
         }
         if (shouldGoUp) shouldGoUp = false;
         if (shouldGoUpTwoRows) shouldGoUpTwoRows = false;
+        minBlockYPosition = 100.0f;
     }
 
     private Vector3 GetPosition(int i)

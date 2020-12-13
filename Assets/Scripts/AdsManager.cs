@@ -3,6 +3,7 @@ using System;
 using GoogleMobileAds.Api;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class AdsManager : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class AdsManager : MonoBehaviour
 
     private void AdFailedToLoad(object sender, AdErrorEventArgs e)
     {
-        throw new NotImplementedException();
+        
     }
 
     public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
@@ -87,7 +88,8 @@ public class AdsManager : MonoBehaviour
     public void ReviveTapped(){
 
         if(Application.internetReachability == NetworkReachability.NotReachable){
-            Debug.Log("Fucking check internet connection");
+            // Debug.Log("Fucking check internet connection");
+            Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
         }
         else{
             // show the loader
@@ -100,7 +102,8 @@ public class AdsManager : MonoBehaviour
 
     public void WinBalls(){
         if(Application.internetReachability == NetworkReachability.NotReachable){
-            Debug.Log("Fucking check internet connection bitches");
+            // Debug.Log("Fucking check internet connection bitches");
+            Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
         }
         else{
             loader.SetActive(true);
@@ -109,29 +112,5 @@ public class AdsManager : MonoBehaviour
             RequestRewardAd();
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

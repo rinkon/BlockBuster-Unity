@@ -41,7 +41,6 @@ public class BlockScript : MonoBehaviour
                 Destroy(localBoxPlosion, 0.20f);
                 if(gameObject.tag == "inverseBlock" && GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().goReverseCount == 0){
                     GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().InverseBlockPower();
-                    // GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().goReverseCount = 2;
                 }
                 Destroy(gameObject);
             }

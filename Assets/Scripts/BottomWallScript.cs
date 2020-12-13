@@ -26,11 +26,6 @@ public class BottomWallScript : MonoBehaviour
         }
         if(counter == targetBallCount){
             ballLauncher.canPull = true;
-            // if (blockSpawner.GetComponent<BlockSpawner>().shouldGoUp)
-            // {
-            //     blockSpawner.SetActive(false);
-            //     blockSpawner.SetActive(true);
-            // }
             blockSpawner.SetActive(false);
             blockSpawner.SetActive(true);
             counter = 0;

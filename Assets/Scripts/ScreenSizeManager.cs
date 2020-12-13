@@ -41,7 +41,6 @@ public class ScreenSizeManager : MonoBehaviour
             bottomWall.transform.position = new Vector3(tempX, bottomWall.transform.position.y, 0);
             isBottomWallSet = true;
         }
-        // print("BottomWall Position update " + Camera.main.WorldToScreenPoint(bottomWall.transform.position));
     }
 
     private void PositionBlockSpawner()
