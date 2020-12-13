@@ -47,7 +47,21 @@ public class AdsManager : MonoBehaviour
         this.rewardedAd.OnAdLoaded += HandleRewardBasedVideoLoaded;
         this.rewardedAd.OnAdFailedToLoad += AdFailedToLoad;
         this.rewardedAd.OnAdOpening += OpenedAd;
+        this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
         this.rewardedAd.LoadAd(request);
+    }
+
+    private void HandleRewardedAdClosed(object sender, EventArgs e)
+    {
+        if(isRevive){
+            Toast.Instance.Show("See full ad to Recover", 3f, Toast.ToastColor.Dark);
+            isRevive = false;
+        }
+        else if(isWinBalls){
+            Toast.Instance.Show("See full ad to Win balls", 3f, Toast.ToastColor.Dark);
+            isWinBalls = false;
+            blurImage.SetActive(false);
+        }
     }
 
     private void UserEarned(object sender, Reward e)
@@ -70,13 +84,15 @@ public class AdsManager : MonoBehaviour
 
     private void OpenedAd(object sender, EventArgs e)
     {
-        loader.SetActive(false);
-        gameEndPopup.SetActive(false);
+        // loader.SetActive(false);
+        // gameEndPopup.SetActive(false);
     }
 
     private void AdFailedToLoad(object sender, AdErrorEventArgs e)
     {
-        
+        Toast.Instance.Show("Failed to load ads, please try after sometimes.", 3f, Toast.ToastColor.Dark);
+        isRevive = false;
+        isWinBalls = false;
     }
 
     public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
