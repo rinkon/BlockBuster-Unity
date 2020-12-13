@@ -9,9 +9,12 @@ public class AdsManager : MonoBehaviour
     private RewardedAd rewardedAd;
     private string adUnitId = "ca-app-pub-3940256099942544/5224354917";
 
+    private bool isRevive = false;
+    private bool isWinBalls = false;
+
     private static AdsManager _instance;
     [SerializeField]
-    private GameObject loader, gameEndPopup, blurImage, blockSpawner;
+    private GameObject loader, gameEndPopup, blurImage, blockSpawner, ballLauncher;
 
     public static AdsManager Instance()
     {
@@ -49,17 +52,25 @@ public class AdsManager : MonoBehaviour
     private void UserEarned(object sender, Reward e)
     {
         loader.SetActive(false);
-        gameEndPopup.SetActive(false);
-        blurImage.SetActive(false);
-        blockSpawner.GetComponent<BlockSpawner>().ReviveAwarded();
-        blockSpawner.SetActive(false);
-        blockSpawner.SetActive(true);
+        if(isRevive){
+            gameEndPopup.SetActive(false);
+            blurImage.SetActive(false);
+            blockSpawner.GetComponent<BlockSpawner>().ReviveAwarded();
+            blockSpawner.SetActive(false);
+            blockSpawner.SetActive(true);
+            isRevive = false;
+        }
+        else if(isWinBalls){
+            isWinBalls = false;
+            blurImage.SetActive(false);
+            ballLauncher.GetComponent<BallLauncher>().counter += 1;
+        }
     }
 
     private void OpenedAd(object sender, EventArgs e)
     {
         loader.SetActive(false);
-        gameEndPopup.SetActive(true);
+        gameEndPopup.SetActive(false);
     }
 
     private void AdFailedToLoad(object sender, AdErrorEventArgs e)
@@ -82,9 +93,45 @@ public class AdsManager : MonoBehaviour
             // show the loader
             loader.SetActive(true);
             gameEndPopup.SetActive(false);
+            isRevive = true;
+            RequestRewardAd();
+        }
+    }
+
+    public void WinBalls(){
+        if(Application.internetReachability == NetworkReachability.NotReachable){
+            Debug.Log("Fucking check internet connection bitches");
+        }
+        else{
+            loader.SetActive(true);
+            blurImage.SetActive(true);
+            isWinBalls = true;
             RequestRewardAd();
         }
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

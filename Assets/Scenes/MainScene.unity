@@ -386,6 +386,7 @@ MonoBehaviour:
   gameEndPopup: {fileID: 1306745347}
   blurImage: {fileID: 18024563}
   blockSpawner: {fileID: 728147083}
+  ballLauncher: {fileID: 1381944460}
 --- !u!1 &107139423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,7 +1592,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 30349052}
-        m_MethodName: 
+        m_MethodName: WinBalls
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
