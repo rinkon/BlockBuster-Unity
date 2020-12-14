@@ -139,9 +139,10 @@ public class BlockSpawner : MonoBehaviour
         {
             print("highscore " + highScore.ToString());
             print("rowCount " + rowCount.ToString());
-            PlayerPrefs.SetInt("highScore", highScore);
-            PlayerPrefs.Save();
+            PlayerPrefs.SetInt("highScore", rowCount);
+            // PlayerPrefs.Save();
         }
+        // print(PlayerPrefs.GetInt("highScore", 0).ToString());
         SceneManager.LoadScene(0);
     }
 
