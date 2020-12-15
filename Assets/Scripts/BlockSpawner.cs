@@ -95,6 +95,7 @@ public class BlockSpawner : MonoBehaviour
         // Generate rows of blocks and bonus
         if(goReverseCount == 0){
             rowCount++;
+            bool atLeastOneBlockOrBonus = false;
             for (int i = 0; i < 7; i++)
             {
                 int rndm = UnityEngine.Random.Range(0, 100);
@@ -104,11 +105,13 @@ public class BlockSpawner : MonoBehaviour
                     int hits = UnityEngine.Random.Range(1, 3) + rowCount;
                     block.SetHits(hits);
                     blockSpawned.Add(block);
+                    atLeastOneBlockOrBonus = true;
                 }
                 else if( rndm > 30 && rndm < 36 )
                 {
                     var bonus = Instantiate(bonusPrefab, GetPosition(i), Quaternion.identity);
                     bonusSpawned.Add(bonus);
+                    atLeastOneBlockOrBonus = true;
                 }
                 else if(rndm > 40 && rndm < 43 && rowCount > 2)
                 {
@@ -116,7 +119,16 @@ public class BlockSpawner : MonoBehaviour
                     int hits = UnityEngine.Random.Range(1, 3) + rowCount;
                     block.SetHits(hits);
                     blockSpawned.Add(block);
+                    atLeastOneBlockOrBonus = true;
                 }
+            }
+            if(!atLeastOneBlockOrBonus){
+                int backupRandom = UnityEngine.Random.Range(0, 7);
+                var block = Instantiate(blockPrefab, GetPosition(backupRandom), Quaternion.identity);   
+                int hits = UnityEngine.Random.Range(1, 3) + rowCount;
+                block.SetHits(hits);
+                blockSpawned.Add(block);
+                atLeastOneBlockOrBonus = true;
             }
         }
         if(goReverseCount > 0){

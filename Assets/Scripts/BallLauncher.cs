@@ -94,4 +94,11 @@ public class BallLauncher : MonoBehaviour
         }
     }
 
+    public void WinBallsCalled(){
+        canPull = false;
+    }
+    public void WinBallsEnded(){
+        canPull = true;
+    }
+
 }

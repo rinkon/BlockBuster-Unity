@@ -91,8 +91,11 @@ public class AdsManager : MonoBehaviour
     private void AdFailedToLoad(object sender, AdErrorEventArgs e)
     {
         Toast.Instance.Show("Failed to load ads, please try after sometimes.", 3f, Toast.ToastColor.Dark);
+        if(isWinBalls){
+            ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
+            isWinBalls = false;
+        }
         isRevive = false;
-        isWinBalls = false;
     }
 
     public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
@@ -122,6 +125,7 @@ public class AdsManager : MonoBehaviour
             Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
         }
         else{
+            ballLauncher.GetComponent<BallLauncher>().WinBallsCalled();
             loader.SetActive(true);
             blurImage.SetActive(true);
             isWinBalls = true;
