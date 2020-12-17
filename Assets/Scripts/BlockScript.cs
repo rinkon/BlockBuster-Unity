@@ -30,8 +30,10 @@ public class BlockScript : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "ball")
         {
-            if (hitsRemaining > 1)
+            if (hitsRemaining > 1){
                 hitsRemaining -= 1;
+                SoundManagerScript.PlaySound("boxHitSound");
+            }
             else
             {
                 ParticleSystem localBoxPlosion = Instantiate(boxplosion, gameObject.transform.position, Quaternion.identity);
@@ -43,6 +45,7 @@ public class BlockScript : MonoBehaviour
                     GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().InverseBlockPower();
                 }
                 Destroy(gameObject);
+                SoundManagerScript.PlaySound("boxCrush");
             }
             UpdateVisualState();
         }

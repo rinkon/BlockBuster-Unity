@@ -71,6 +71,7 @@ public class BallLauncher : MonoBehaviour
             canShowPreview = false;
             int localCounter = counter;
             GetComponentInParent<BottomWallScript>().targetBallCount = localCounter;
+            // SoundManagerScript.PlaySound("ballLauncher");
             while(localCounter > 0){
                 GameObject theBall = Instantiate(ball, transform.position, Quaternion.identity);
 
@@ -95,10 +96,17 @@ public class BallLauncher : MonoBehaviour
     }
 
     public void WinBallsCalled(){
-        canPull = false;
+        // this.canPull = false;
+        Time.timeScale = 0;
     }
     public void WinBallsEnded(){
-        canPull = true;
+        // this.canPull = true;
+        Time.timeScale = 1;
+    }
+
+    public void Whatever(){
+        // canPull = false;
+        GameObject.FindGameObjectWithTag("AdHolder").GetComponent<AdsManager>().WinBalls();
     }
 
 }

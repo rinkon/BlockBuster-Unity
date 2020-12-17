@@ -7,6 +7,7 @@ TagManager:
   - ball
   - inverseBlock
   - blockSpawner
+  - AdHolder
   layers:
   - Default
   - TransparentFX

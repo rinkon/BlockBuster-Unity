@@ -15,6 +15,7 @@ public class BonusScript : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "ball")
         {
+            SoundManagerScript.PlaySound("bonus");
             ballLauncher.counter = ballLauncher.counter + 1;
             Destroy(gameObject);
         }

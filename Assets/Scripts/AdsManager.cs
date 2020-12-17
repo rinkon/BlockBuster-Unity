@@ -54,13 +54,15 @@ public class AdsManager : MonoBehaviour
     private void HandleRewardedAdClosed(object sender, EventArgs e)
     {
         if(isRevive){
-            Toast.Instance.Show("See full ad to Recover", 3f, Toast.ToastColor.Dark);
+            // Toast.Instance.Show("See full ad to Recover", 3f, Toast.ToastColor.Dark);
             isRevive = false;
         }
         else if(isWinBalls){
-            Toast.Instance.Show("See full ad to Win balls", 3f, Toast.ToastColor.Dark);
+            // Toast.Instance.Show("See full ad to Win balls", 3f, Toast.ToastColor.Dark);
             isWinBalls = false;
             blurImage.SetActive(false);
+            loader.SetActive(false);
+            ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
         }
     }
 
@@ -78,6 +80,7 @@ public class AdsManager : MonoBehaviour
         else if(isWinBalls){
             isWinBalls = false;
             blurImage.SetActive(false);
+            ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
             ballLauncher.GetComponent<BallLauncher>().counter += 1;
         }
     }

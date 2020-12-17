@@ -134,8 +134,17 @@ public class BlockSpawner : MonoBehaviour
         if(goReverseCount > 0){
             goReverseCount--;
         }
-        if (shouldGoUp) shouldGoUp = false;
-        if (shouldGoUpTwoRows) shouldGoUpTwoRows = false;
+        if (shouldGoUp) {
+            SoundManagerScript.PlaySound("boxRowUp");
+            shouldGoUp = false;
+        }
+        if (shouldGoUpTwoRows) {
+            shouldGoUpTwoRows = false;
+            SoundManagerScript.PlaySound("boxRowUp");
+        }
+        if(!shouldGoUp && !shouldGoUpTwoRows){
+            SoundManagerScript.PlaySound("boxRowDown");
+        }
         minBlockYPosition = 100.0f;
     }
 
