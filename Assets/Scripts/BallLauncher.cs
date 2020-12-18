@@ -96,17 +96,20 @@ public class BallLauncher : MonoBehaviour
     }
 
     public void WinBallsCalled(){
-        // this.canPull = false;
-        Time.timeScale = 0;
+        if(Application.internetReachability == NetworkReachability.NotReachable){
+            Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
+        }
+        else{
+            Time.timeScale = 0;
+            canPull = false;
+            canShowPreview = false;
+            GameObject.FindGameObjectWithTag("AdHolder").GetComponent<AdsManager>().WinBalls();
+        }
     }
     public void WinBallsEnded(){
-        // this.canPull = true;
+        canPull = true;
+        // canShowPreview = true;
         Time.timeScale = 1;
-    }
-
-    public void Whatever(){
-        // canPull = false;
-        GameObject.FindGameObjectWithTag("AdHolder").GetComponent<AdsManager>().WinBalls();
     }
 
 }

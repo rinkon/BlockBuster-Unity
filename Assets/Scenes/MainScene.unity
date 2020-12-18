@@ -314,7 +314,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1732,7 +1732,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1381944461}
-        m_MethodName: Whatever
+        m_MethodName: WinBallsCalled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

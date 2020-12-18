@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-    public static AudioClip boxHitSound, boxHitSoundTwo, boxCrush, ballLauncher, bonus, boxRowDown, boxRowUp;
+    public static AudioClip boxHitSound, boxHitSoundTwo, boxCrush, ballLauncher, bonus, boxRowDown, boxRowUp, gameEnd, clockTicking;
     static AudioSource audioSource;
     void Start()
     {
@@ -15,11 +15,13 @@ public class SoundManagerScript : MonoBehaviour
         bonus = Resources.Load<AudioClip>("bonus");
         boxRowUp = Resources.Load<AudioClip>("boxRowUp");
         boxRowDown = Resources.Load<AudioClip>("boxRowDown");
+        gameEnd = Resources.Load<AudioClip>("gameEnd");
+        clockTicking = Resources.Load<AudioClip>("clockTicking");
 
         audioSource = GetComponent<AudioSource>();
     }
 
-    public static void PlaySound(string clip){
+    public static void PlaySound(string clip, float delay = 1.0f){
         switch (clip){
         case "boxHitSound":
             audioSource.PlayOneShot(boxHitSoundTwo);
@@ -39,9 +41,19 @@ public class SoundManagerScript : MonoBehaviour
         case "boxRowUp":
             audioSource.PlayOneShot(boxRowUp);
             break;
-        
-
+        case "gameEnd":
+            audioSource.PlayOneShot(gameEnd);
+            break;
+        case "clockTicking":
+            audioSource.clip = clockTicking;
+            audioSource.loop = true;
+            audioSource.PlayDelayed(delay);
+            break;
         }
+    }
 
+    public static void StopLoopingAndAudioSource(){
+        audioSource.Stop();
+        audioSource.loop = false;
     }
 }

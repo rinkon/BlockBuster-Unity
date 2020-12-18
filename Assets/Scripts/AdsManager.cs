@@ -46,7 +46,6 @@ public class AdsManager : MonoBehaviour
         this.rewardedAd.OnUserEarnedReward += UserEarned;
         this.rewardedAd.OnAdLoaded += HandleRewardBasedVideoLoaded;
         this.rewardedAd.OnAdFailedToLoad += AdFailedToLoad;
-        this.rewardedAd.OnAdOpening += OpenedAd;
         this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
         this.rewardedAd.LoadAd(request);
     }
@@ -54,11 +53,15 @@ public class AdsManager : MonoBehaviour
     private void HandleRewardedAdClosed(object sender, EventArgs e)
     {
         if(isRevive){
-            // Toast.Instance.Show("See full ad to Recover", 3f, Toast.ToastColor.Dark);
+            Toast.Instance.Show("See full ad to Recover", 3f, Toast.ToastColor.Dark);
+            // SoundManagerScript.StopLoopingAndAudioSource();
             isRevive = false;
+            loader.SetActive(false);
+            // blurImage.SetActive(false);
+            gameEndPopup.SetActive(true);
         }
         else if(isWinBalls){
-            // Toast.Instance.Show("See full ad to Win balls", 3f, Toast.ToastColor.Dark);
+            Toast.Instance.Show("See full ad to Win ball", 3f, Toast.ToastColor.Dark);
             isWinBalls = false;
             blurImage.SetActive(false);
             loader.SetActive(false);
@@ -76,19 +79,17 @@ public class AdsManager : MonoBehaviour
             blockSpawner.SetActive(false);
             blockSpawner.SetActive(true);
             isRevive = false;
+            SoundManagerScript.StopLoopingAndAudioSource();
+            SoundManagerScript.PlaySound("boxRowUp");
         }
-        else if(isWinBalls){
+        if(isWinBalls){
+            Toast.Instance.Show("Bonus ball Won", 3f, Toast.ToastColor.Dark);
+            SoundManagerScript.PlaySound("bonus");
             isWinBalls = false;
             blurImage.SetActive(false);
             ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
             ballLauncher.GetComponent<BallLauncher>().counter += 1;
         }
-    }
-
-    private void OpenedAd(object sender, EventArgs e)
-    {
-        // loader.SetActive(false);
-        // gameEndPopup.SetActive(false);
     }
 
     private void AdFailedToLoad(object sender, AdErrorEventArgs e)
@@ -99,6 +100,7 @@ public class AdsManager : MonoBehaviour
             isWinBalls = false;
         }
         isRevive = false;
+        SoundManagerScript.StopLoopingAndAudioSource();
     }
 
     public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
@@ -128,7 +130,6 @@ public class AdsManager : MonoBehaviour
             Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
         }
         else{
-            ballLauncher.GetComponent<BallLauncher>().WinBallsCalled();
             loader.SetActive(true);
             blurImage.SetActive(true);
             isWinBalls = true;
