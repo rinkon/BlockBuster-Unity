@@ -71,7 +71,7 @@ public class BallLauncher : MonoBehaviour
             canShowPreview = false;
             int localCounter = counter;
             GetComponentInParent<BottomWallScript>().targetBallCount = localCounter;
-            // SoundManagerScript.PlaySound("ballLauncher");
+            SoundManagerScript.PlaySound("ballLauncher");
             while(localCounter > 0){
                 GameObject theBall = Instantiate(ball, transform.position, Quaternion.identity);
 

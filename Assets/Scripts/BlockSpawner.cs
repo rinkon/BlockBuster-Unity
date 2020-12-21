@@ -61,7 +61,7 @@ public class BlockSpawner : MonoBehaviour
                 
                 if(block.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = block.transform.position.y;
-                    if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
+                    if((minBlockYPosition - 0.6f) <= rootBall.transform.position.y){
                         SoundManagerScript.PlaySound("gameEnd");
                         gameEndPopup.SetActive(true);
                         blurImage.SetActive(true);
@@ -86,7 +86,7 @@ public class BlockSpawner : MonoBehaviour
                 }
                 if(bonus.transform.position.y <= minBlockYPosition){
                     minBlockYPosition = bonus.transform.position.y;
-                    if((minBlockYPosition - 0.3f) <= rootBall.transform.position.y){
+                    if((minBlockYPosition - 0.6f) <= rootBall.transform.position.y){
                         SoundManagerScript.PlaySound("gameEnd");
                         gameEndPopup.SetActive(true);
                         blurImage.SetActive(true);

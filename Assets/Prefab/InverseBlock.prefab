@@ -113,8 +113,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280163886
-  m_fontColor: {r: 0.1792453, g: 0.118369535, b: 0.118369535, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 860691f2f72dfbf22b6965614fd2c503, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3b9b2bed54f063f296ef67eaa560b32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,7 +276,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.23, y: 3.23}
+    oldSize: {x: 3.22, y: 3.23}
     newSize: {x: 3.23, y: 3.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

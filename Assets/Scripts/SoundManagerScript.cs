@@ -6,6 +6,7 @@ public class SoundManagerScript : MonoBehaviour
 {
     public static AudioClip boxHitSound, boxHitSoundTwo, boxCrush, ballLauncher, bonus, boxRowDown, boxRowUp, gameEnd, clockTicking;
     static AudioSource audioSource;
+    static int isMuted;
     void Start()
     {
         boxHitSound = Resources.Load<AudioClip>("box hit sound");
@@ -19,17 +20,24 @@ public class SoundManagerScript : MonoBehaviour
         clockTicking = Resources.Load<AudioClip>("clockTicking");
 
         audioSource = GetComponent<AudioSource>();
+
+        isMuted = PlayerPrefs.GetInt("mutedValue", 0);
     }
 
     public static void PlaySound(string clip, float delay = 1.0f){
+        if(isMuted == 1)
+            return;
+        audioSource.volume = 1.0f;
         switch (clip){
         case "boxHitSound":
             audioSource.PlayOneShot(boxHitSoundTwo);
             break;
         case "boxCrush":
+            audioSource.volume = 0.5f;
             audioSource.PlayOneShot(boxCrush);
             break;
         case "ballLauncher":
+            audioSource.volume = 0.3f;
             audioSource.PlayOneShot(ballLauncher);
             break;
         case "bonus":

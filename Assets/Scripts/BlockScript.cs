@@ -39,6 +39,11 @@ public class BlockScript : MonoBehaviour
                 ParticleSystem localBoxPlosion = Instantiate(boxplosion, gameObject.transform.position, Quaternion.identity);
                 ParticleSystem.MainModule mp = localBoxPlosion.main;
                 mp.startColor = spriteRenderer.color;
+                if(gameObject.tag == "inverseBlock"){
+                    Color explosionColor;
+                    ColorUtility.TryParseHtmlString("#c4bf0c", out explosionColor);
+                    mp.startColor = explosionColor;
+                }
                 localBoxPlosion.Play();
                 Destroy(localBoxPlosion, 0.20f);
                 if(gameObject.tag == "inverseBlock" && GameObject.FindWithTag("blockSpawner").GetComponent<BlockSpawner>().goReverseCount == 0){
