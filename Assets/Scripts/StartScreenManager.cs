@@ -11,6 +11,8 @@ public class StartScreenManager : MonoBehaviour
     private TextMeshPro highScore;
     [SerializeField]
     private Button muteButton;
+    [SerializeField]
+    private Sprite muteSprite, unMuteSprite;
     private void Start() {
         int highScoreInt = PlayerPrefs.GetInt("highScore", 0);
         print(highScoreInt);
@@ -19,9 +21,10 @@ public class StartScreenManager : MonoBehaviour
         int muted = PlayerPrefs.GetInt("mutedValue", 0);
         if(muted == 0){
             // mutebutton text to mute
+            muteButton.GetComponent<Image>().sprite = muteSprite;
         }
         else{
-            // mute button text to unmute
+            muteButton.GetComponent<Image>().sprite = unMuteSprite;
         }
 
     }
@@ -33,11 +36,11 @@ public class StartScreenManager : MonoBehaviour
         int muted = PlayerPrefs.GetInt("mutedValue", 0);
         if(muted == 0){
             muted = 1;
-            // mute button text to unmute
+            muteButton.GetComponent<Image>().sprite = unMuteSprite;
         }
         else{
             muted = 0;
-            // mute button text to mute
+            muteButton.GetComponent<Image>().sprite = muteSprite;
         }
         PlayerPrefs.SetInt("mutedValue", muted);
     }
