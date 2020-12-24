@@ -820,7 +820,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScore: {fileID: 1917517436}
-  muteButton: {fileID: 0}
+  muteButton: {fileID: 846575677}
+  muteSprite: {fileID: 21300000, guid: 470930e3e7ea1803ab552d4fe5f3ea3d, type: 3}
+  unMuteSprite: {fileID: 21300000, guid: 6cee8496b864fd8d6bf8c72f31161335, type: 3}
 --- !u!4 &1241189142
 Transform:
   m_ObjectHideFlags: 0

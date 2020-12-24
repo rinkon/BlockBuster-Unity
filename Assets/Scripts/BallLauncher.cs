@@ -67,6 +67,7 @@ public class BallLauncher : MonoBehaviour
 
     IEnumerator BallzRain(Vector3 direction){
         if(direction.magnitude > 0.0f){
+            BottomWallScript.firstShotPulled = true;
             canPull = false;
             canShowPreview = false;
             int localCounter = counter;

@@ -13,6 +13,7 @@ public class StartScreenManager : MonoBehaviour
     private Button muteButton;
     [SerializeField]
     private Sprite muteSprite, unMuteSprite;
+    
     private void Start() {
         int highScoreInt = PlayerPrefs.GetInt("highScore", 0);
         print(highScoreInt);
@@ -48,4 +49,7 @@ public class StartScreenManager : MonoBehaviour
     public void RateUsPressed(){
         Application.OpenURL("market://details?id=com.voocatta.beatthebox");
     }
+
+    
 }
+

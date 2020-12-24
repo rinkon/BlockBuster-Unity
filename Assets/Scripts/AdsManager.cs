@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class AdsManager : MonoBehaviour
 {
     private RewardedAd rewardedAd;
-    private string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+    private string adUnitId = "ca-app-pub-8831588022499731/1299356802";
+    
 
     private bool isRevive = false;
     private bool isWinBalls = false;
@@ -94,13 +95,28 @@ public class AdsManager : MonoBehaviour
 
     private void AdFailedToLoad(object sender, AdErrorEventArgs e)
     {
-        Toast.Instance.Show("Failed to load ads, please try after sometimes.", 3f, Toast.ToastColor.Dark);
-        if(isWinBalls){
-            ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
-            isWinBalls = false;
+        // Toast.Instance.Show("Failed to load ads, please try after sometimes.", 3f, Toast.ToastColor.Dark);
+        // if(isWinBalls){
+        //     ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
+        //     isWinBalls = false;
+        // }
+        // isRevive = false;
+        // SoundManagerScript.StopLoopingAndAudioSource();
+        if(isRevive){
+            Toast.Instance.Show("Failed to load ads", 3f, Toast.ToastColor.Dark);
+            // SoundManagerScript.StopLoopingAndAudioSource();
+            isRevive = false;
+            loader.SetActive(false);
+            // blurImage.SetActive(false);
+            gameEndPopup.SetActive(true);
         }
-        isRevive = false;
-        SoundManagerScript.StopLoopingAndAudioSource();
+        else if(isWinBalls){
+            Toast.Instance.Show("Failed to load ads", 3f, Toast.ToastColor.Dark);
+            isWinBalls = false;
+            blurImage.SetActive(false);
+            loader.SetActive(false);
+            ballLauncher.GetComponent<BallLauncher>().WinBallsEnded();
+        }
     }
 
     public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
