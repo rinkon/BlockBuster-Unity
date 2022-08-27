@@ -128,7 +128,7 @@ public class AdsManager : MonoBehaviour
     public void ReviveTapped(){
 
         if(Application.internetReachability == NetworkReachability.NotReachable){
-            // Debug.Log("Fucking check internet connection");
+            // Debug.Log("check internet connection");
             Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
         }
         else{
@@ -142,7 +142,7 @@ public class AdsManager : MonoBehaviour
 
     public void WinBalls(){
         if(Application.internetReachability == NetworkReachability.NotReachable){
-            // Debug.Log("Fucking check internet connection bitches");
+            // Debug.Log("check internet connection bitches");
             Toast.Instance.Show("No internet connection", 3f, Toast.ToastColor.Dark);
         }
         else{
